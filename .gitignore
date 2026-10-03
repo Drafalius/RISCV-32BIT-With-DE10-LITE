@@ -1,0 +1,15 @@
+db
+incremental_db
+output_files.rpt
+output_files.summary
+output_files.smsg
+output_files.done
+output_files.pin
+output_files.jdi
+output_files.sld
+
+.qws
+.smsg
+
+.vcd
+.vvp

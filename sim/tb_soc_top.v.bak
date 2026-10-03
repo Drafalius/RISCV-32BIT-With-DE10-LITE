@@ -1,0 +1,20 @@
+module tb_soc_top;
+
+    reg clk;
+    reg rst;
+    soc_top uut (
+        .clk(clk),
+        .rst(rst)
+    );
+    always #10 clk = ~clk;
+
+    initial begin
+        clk = 0;
+        rst = 1;
+        #40;
+        rst = 0;
+        #2000;
+        $stop;
+    end
+
+endmodule

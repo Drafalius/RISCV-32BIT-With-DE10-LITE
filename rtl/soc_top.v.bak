@@ -1,0 +1,34 @@
+module soc_top (
+    input wire clk,
+    input wire rst
+);
+    wire [31:0] pc;
+    wire [31:0] instr;
+    wire [31:0] alu_result;
+    wire [31:0] mem_data_write;
+    wire [31:0] mem_data_read;
+    wire        mem_read;
+    wire        mem_write;
+    riscv_top cpu (
+        .clk(clk),
+        .rst(rst),
+        .pc_out(pc),
+        .instr(instr),
+        .alu_result(alu_result),
+        .mem_data_write(mem_data_write),
+        .mem_data_read(mem_data_read),
+        .mem_read(mem_read),
+        .mem_write(mem_write)
+    );
+    memory ram (
+        .clk(clk),
+        .instr_addr(pc),
+        .instr(instr),
+        .data_addr(alu_result),
+        .write_data(mem_data_write),
+        .mem_write(mem_write),
+        .mem_read(mem_read),
+        .read_data(mem_data_read)
+    );
+
+endmodule
